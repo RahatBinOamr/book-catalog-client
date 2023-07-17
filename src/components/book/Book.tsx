@@ -9,7 +9,7 @@ const Book: React.FC<book> = ({ book }) => {
   const { title, publicationDate, imgUrl, genre, author, _id } = book;
   const { name, img } = author;
   return (
-    <div className="card w-72 bg-base-100 shadow-xl">
+    <div className="card w-60 bg-base-100 shadow-xl">
       <Link to={`/${_id}`}>
         <figure>
           <img

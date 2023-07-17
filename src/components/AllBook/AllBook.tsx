@@ -26,7 +26,7 @@ const AllBook = () => {
           It’s an easy, library-quality catalog.
         </h1>
       </div>
-      <div className="mt-5 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-5 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
         {data?.books?.map((book: IBook) => (
           <Book book={book} />
         ))}

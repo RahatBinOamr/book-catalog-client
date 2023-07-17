@@ -7,10 +7,11 @@ import LoadingBar from '../sheared/LoadingBar';
 import Book from './Book';
 import Dropdown from './Dropdown';
 const Books = () => {
-  const [sort] = useState({ sort: 'publicationDate' });
   const [search, setSearch] = useState('');
   const [genre, setGenre] = useState('');
-  const url = `?sort=${sort}&search=${search}&genre=${genre}&limit=${10}`;
+  const url = `?sort=${{
+    publicationDate: 'desc',
+  }}&search=${search}&genre=${genre}&limit=${10}`;
   const { data, isLoading, isError } = useGetBooksQuery(url, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 5000,
@@ -52,7 +53,7 @@ const Books = () => {
           </Link>
         </div>
       </div>
-      <div className=" mt-5 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div className=" mt-5 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
         {data?.books?.map((book: IBook) => (
           <Book key={book._id} book={book} />
         ))}
