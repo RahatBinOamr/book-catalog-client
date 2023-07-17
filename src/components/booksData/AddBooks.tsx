@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { usePostBookMutation } from '../../redux/features/bookCatalog/booksApi';
 
 interface BookFormProps {
@@ -21,29 +22,27 @@ const AddBook: React.FC<BookFormProps> = () => {
   const [authorImg, setAuthorImg] = useState('');
   const [genre, setGenre] = useState('');
   const [publicationDate, setPublicationDate] = useState(new Date());
-
+  const navigate = useNavigate();
   const [savedBook, { isError, isLoading, isSuccess }] = usePostBookMutation();
   console.log(isError, isLoading, isSuccess);
-  const handleSubmit = async (event: React.FormEvent) => {
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const author = {
       name: authorName,
       img: authorImg,
     };
-    const bookData: BookData = {
+    const bookData = {
       imgUrl,
       title,
       author,
       genre,
       publicationDate,
     };
-    try {
-      savedBook(bookData);
-      toast.success('book added successfully');
-      handelReset();
-    } catch (e) {
-      toast.error(e.message);
-    }
+    savedBook(bookData);
+    toast.success('book added successfully');
+    navigate('/allBooks');
+    handelReset();
   };
   const handelReset = () => {
     setAuthorName(''),

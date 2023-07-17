@@ -10,8 +10,8 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { user, isLoading } = useAppSelector(state => state.user);
-  const handelLogin = e => {
-    e.preventDefault();
+  const handelLogin = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     dispatch(loginUser({ email: email, password: password }));
     toast.success('Login successfully');
   };
@@ -26,7 +26,7 @@ const Login = () => {
         <img
           src={logo}
           alt=""
-          className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128"
+          className="object-contain h-72 sm:h lg:h-96 xl:h-112 2xl:h-128"
         />
       </div>
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-200 dark:text-gray-900">

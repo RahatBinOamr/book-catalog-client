@@ -25,9 +25,9 @@ const EditBook: React.FC<BookFormProps> = () => {
   const [authorImg, setAuthorImg] = useState(data?.author?.img);
   const [genre, setGenre] = useState(data?.genre);
   const [publicationDate, setPublicationDate] = useState(new Date());
-  const [editBook, { isError, isLoading, isSuccess }] = useEditBookMutation();
+  const [editBook] = useEditBookMutation();
   const navigate = useNavigate();
-  const handleSubmit = async event => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const author = {
       name: authorName,

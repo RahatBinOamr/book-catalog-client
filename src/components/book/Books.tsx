@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { IBook } from '../../Interface/bookInterface';
 import { useGetBooksQuery } from '../../redux/features/bookCatalog/booksApi';
 import LoadingBar from '../sheared/LoadingBar';
 import Book from './Book';
 import Dropdown from './Dropdown';
 const Books = () => {
-  const [sort, setSort] = useState({ sort: 'publicationDate' });
-
+  const [sort] = useState({ sort: 'publicationDate' });
   const [search, setSearch] = useState('');
   const [genre, setGenre] = useState('');
   const url = `?sort=${sort}&search=${search}&genre=${genre}&limit=${10}`;
@@ -53,7 +53,7 @@ const Books = () => {
         </div>
       </div>
       <div className=" mt-5 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-        {data?.books?.map(book => (
+        {data?.books?.map((book: IBook) => (
           <Book key={book._id} book={book} />
         ))}
       </div>

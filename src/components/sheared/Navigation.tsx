@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-
 import { getAuth, signOut } from 'firebase/auth';
+import { useEffect, useState } from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { ImCross } from 'react-icons/im';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import app from '../../firebase/firebase.config';
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';

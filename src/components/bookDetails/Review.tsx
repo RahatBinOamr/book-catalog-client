@@ -1,19 +1,20 @@
+//@ts-nocheck
 import { useState } from 'react';
+import { IReview } from '../../Interface/bookInterface';
 import {
   useGetSingleBookQuery,
   usePostReviewMutation,
 } from '../../redux/features/bookCatalog/booksApi';
 
-const Review = ({ id }) => {
+const Review: React.FC<{ id: string }> = ({ id }) => {
   const [review, setReview] = useState('');
   const { data } = useGetSingleBookQuery(id, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 5000,
   });
-  const [postReview, { isLading, isError, isSuccess }] =
-    usePostReviewMutation();
-  const handleSubmit = e => {
-    e.preventDefault();
+  const [postReview] = usePostReviewMutation();
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const reviewOption = { id, reviews: { reviews: review } };
     postReview(reviewOption);
     setReview('');
@@ -40,8 +41,8 @@ const Review = ({ id }) => {
       </form>
       <div>
         <ul className="list-none">
-          {data?.reviews?.map((review, i) => (
-            <div key={i} className="flex space-x-4 mt-4">
+          {data?.reviews?.map((review: IReview) => (
+            <div key={review._id} className="flex space-x-4 mt-4">
               <img
                 alt=""
                 src="https://source.unsplash.com/100x100/?portrait"

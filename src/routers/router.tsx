@@ -1,7 +1,9 @@
+//@ts-nocheck
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
 import AllBook from '../components/AllBook/AllBook';
 import BookDetails from '../components/bookDetails/BookDetails';
+
 import AddBook from '../components/booksData/AddBooks';
 import EditBook from '../components/booksData/EditBook';
 import Error from '../components/sheared/Error';

@@ -11,8 +11,8 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const handelRegistration = e => {
-    e.preventDefault();
+  const handelRegistration = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     dispatch(createUser({ email: email, password: password }));
 
     toast.success('registered successfully');

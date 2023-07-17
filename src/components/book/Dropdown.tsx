@@ -1,4 +1,8 @@
-const Dropdown = ({ setGenre, genre }) => {
+interface IProps {
+  setGenre: (genre: string) => void;
+  genre: string;
+}
+const Dropdown: React.FC<IProps> = ({ setGenre, genre }) => {
   return (
     <div>
       <form className="flex">
@@ -8,6 +12,9 @@ const Dropdown = ({ setGenre, genre }) => {
             value={genre}
             onChange={event => setGenre(event.target.value)}
           >
+            <option aria-readonly value="">
+              All
+            </option>
             <option value="Fiction">Fiction</option>
             <option value="Thriller">Thriller</option>
             <option value="Mystery">Mystery</option>

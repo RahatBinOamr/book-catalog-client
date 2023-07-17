@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAppSelector } from '../../redux/app/hooks';
@@ -5,27 +6,32 @@ import {
   useDeleteBookMutation,
   useGetSingleBookQuery,
 } from '../../redux/features/bookCatalog/booksApi';
-import Loading from '../sheared/Loading';
+import LoadingBar from '../sheared/LoadingBar';
 import Review from './Review';
-
 const BookDetails = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const { data } = useGetSingleBookQuery(id);
   const { user } = useAppSelector(state => state.user);
   const navigate = useNavigate();
 
   const [deleteData, { isLoading, isError }] = useDeleteBookMutation();
   if (isLoading) {
-    <Loading />;
+    <LoadingBar />;
   }
   if (isError) {
     <h2>data is not assess</h2>;
   }
   const handleDelete = () => {
-    deleteData(id);
-    toast.success('Book deleted successfully');
-    navigate('/');
+    const aggre = window.confirm(
+      `Are you sure you want to delete : ${data?.title}`
+    );
+    if (aggre) {
+      deleteData(id);
+      toast.success('Book deleted successfully');
+      navigate('/');
+    }
   };
+
   return (
     <div>
       <section className="">
@@ -56,7 +62,7 @@ const BookDetails = () => {
                 <div className="flex flex-col space-y-1">
                   <p className="font-semibold">{data?.author?.name} </p>
                   <span className="text-xs dark:text-gray-400">
-                    {data?.publicationDate}
+                    {data?.publicationDate.substring(0, 10)}
                   </span>
                 </div>
               </div>

@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
+import { IBook } from '../../Interface/bookInterface';
 
-const Book = ({ book }) => {
+interface book {
+  book: IBook;
+}
+
+const Book: React.FC<book> = ({ book }) => {
   const { title, publicationDate, imgUrl, genre, author, _id } = book;
   const { name, img } = author;
   return (
@@ -25,7 +30,7 @@ const Book = ({ book }) => {
             <div className="flex flex-col space-y-1">
               <p className="font-semibold">{name} </p>
               <span className="text-xs dark:text-gray-400">
-                {publicationDate}
+                {publicationDate.substring(0, 10)}
               </span>
             </div>
           </div>
