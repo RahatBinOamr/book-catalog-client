@@ -10,7 +10,6 @@ import { setUser } from '../../redux/features/users/userSlice';
 const Navigation = () => {
   const [scroll, setScroll] = useState(false);
   const [open, setOpen] = useState(false);
-
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -29,7 +28,6 @@ const Navigation = () => {
     setOpen(!open);
   };
   const { user } = useAppSelector(state => state.user);
-
   const dispatch = useAppDispatch();
   const auth = getAuth(app);
   const handleLogout = () => {
@@ -59,11 +57,11 @@ const Navigation = () => {
           <div className="hidden md:flex md:items-center md:justify-center">
             <div className="relative">
               <Link to="/allBooks" className="mx-3 font-medium">
-                ALl Books
+                ALL BOOKS
               </Link>
               {user?.email && (
                 <Link to="/addBook" className="mx-3 font-medium">
-                  Add book
+                  ADD BOOK
                 </Link>
               )}
             </div>
@@ -103,10 +101,10 @@ const Navigation = () => {
         className={`${open ? 'block' : 'hidden'} md:hidden text-black bg-white`}
       >
         <Link to="/allBooks" className="block my-2 font-medium text-center">
-          All Books
+          ALL BOOKS
         </Link>
         <Link to="/addBook" className="block my-2 font-medium text-center">
-          Add Book
+          ADD BOOK
         </Link>
       </div>
     </nav>

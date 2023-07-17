@@ -7,12 +7,12 @@ const bookApi = api.injectEndpoints({
       providesTags: ['book'],
     }),
     getSingleBook: builder.query({
-      query: id => `/${id}`,
+      query: id => `/api/v1/books/${id}`,
       providesTags: ['book'],
     }),
     postBook: builder.mutation({
       query: data => ({
-        url: `/`,
+        url: `/api/v1/books/`,
         method: 'POST',
         body: data,
       }),
@@ -20,20 +20,20 @@ const bookApi = api.injectEndpoints({
     }),
     postReview: builder.mutation({
       query: ({ id, reviews }) => ({
-        url: `/review/${id}`,
+        url: `/api/v1/books/review/${id}`,
         method: 'POST',
         body: reviews,
       }),
     }),
     deleteBook: builder.mutation({
       query: id => ({
-        url: `/${id}`,
+        url: `/api/v1/books/${id}`,
         method: 'DELETE',
       }),
     }),
     editBook: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/${id}`,
+        url: `/api/v1/books/${id}`,
         method: 'PUT',
         body: data,
       }),

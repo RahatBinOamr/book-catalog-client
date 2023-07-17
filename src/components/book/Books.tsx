@@ -9,7 +9,7 @@ import Dropdown from './Dropdown';
 const Books = () => {
   const [search, setSearch] = useState('');
   const [genre, setGenre] = useState('');
-  const url = `?sort=${{
+  const url = `/api/v1/books?sort=$sort=${{
     publicationDate: 'desc',
   }}&search=${search}&genre=${genre}&limit=${10}`;
   const { data, isLoading, isError } = useGetBooksQuery(url, {
